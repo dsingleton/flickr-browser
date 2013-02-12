@@ -2,6 +2,7 @@
   "name": "flickr-browser-js",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "1.9"
+    "jquery": "1.9",
+    "requirejs": "~2.1.4"
   }
 }
