@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl: 'js/components',
+    baseUrl: 'js',
     shim: {
         'backbone': {
             deps: ['jquery', 'underscore'],
@@ -10,10 +10,9 @@ requirejs.config({
         }
     },
     paths: {
-        jquery: 'jquery/jquery.min',
-        underscore: 'underscore/underscore-min',
-        backbone: 'backbone/backbone',
-        app: '../app'
+        jquery: 'components/jquery/jquery.min',
+        underscore: 'components/underscore/underscore-min',
+        backbone: 'components/backbone/backbone'
     }
 });
 

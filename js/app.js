@@ -1,20 +1,5 @@
-define(['jquery', 'underscore', 'backbone'],
-function($, _, Backbone) {
-
-  var AppView = Backbone.View.extend({
-    el: '#flickr-app',
-
-    initialize: function() {
-      this.content = this.$("#content");
-
-      this.render();
-    },
-
-    render: function() {
-      this.content.html('fooooooo');
-    }
-
-  });
+define(['jquery', 'underscore', 'backbone', 'views/AppView'],
+function($, _, Backbone, AppView) {
 
   var initialize = function(){
 
