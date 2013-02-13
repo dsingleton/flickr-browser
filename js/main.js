@@ -12,10 +12,12 @@ requirejs.config({
     paths: {
         jquery: 'jquery/jquery.min',
         underscore: 'underscore/underscore-min',
-        backbone: 'backbone/backbone'
+        backbone: 'backbone/backbone',
+        app: '../app'
     }
 });
 
-requirejs(['backbone'], function(Backbone){
-    console.log(Backbone);
+requirejs(['app'],
+function(App){
+    App.initialize();
 });
