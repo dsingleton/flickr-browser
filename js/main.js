@@ -18,6 +18,6 @@ requirejs.config({
 });
 
 requirejs(['app'],
-function(App){
+function(App) {
     App.initialize();
 });

@@ -1,17 +1,19 @@
-define(['jquery', 'backbone'],
-function($, Backbone) {
+define([
+	'jquery',
+	'backbone'
+], function($, Backbone) {
 
-  var IndexView = Backbone.View.extend({
+	var IndexView = Backbone.View.extend({
 
-    initialize: function() {
-      this.render();
-    },
+		initialize: function() {
+			this.render();
+		},
 
-    render: function() {
-      $("#content").html('Index');
-    }
+		render: function() {
+			$("#content").html('Index');
+		}
 
-  });
+	});
 
-  return IndexView;
+	return IndexView;
 });
