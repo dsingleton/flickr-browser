@@ -1,14 +1,13 @@
-define(['jquery', 'underscore', 'backbone', 'views/AppView'],
-function($, _, Backbone, AppView) {
+define(['jquery', 'underscore', 'router'],
+function($, _, Router) {
 
-  var initialize = function(){
+    var initialize = function(){
+        console.log('initialize Router');
+        Router.initialize();
+    };
 
-    console.log($, _, Backbone);
-    var App = new AppView();
-  };
-
-  return {
-    initialize: initialize
-  };
+    return {
+        initialize: initialize
+    };
 
 });
