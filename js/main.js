@@ -12,7 +12,8 @@ requirejs.config({
     paths: {
         jquery: 'components/jquery/jquery.min',
         underscore: 'components/underscore/underscore-min',
-        backbone: 'components/backbone/backbone'
+        backbone: 'components/backbone/backbone',
+        mustache: 'components/mustache/mustache'
     }
 });
 
