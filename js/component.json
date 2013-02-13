@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "jquery": "1.9",
-    "requirejs": "~2.1.4"
+    "requirejs": "~2.1.4",
+    "underscore": "~1.4.4"
   }
 }
