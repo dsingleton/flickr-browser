@@ -1,24 +1,24 @@
 define([
     'jquery',
     'backbone',
-    'views/AppView',
-    'views/HomeView'
-], function($, Backbone, AppView, HomeView){
+    'views/IndexView',
+    'views/PhotoView'
+], function($, Backbone, IndexView, PhotoView){
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-          '':          'index',
-          'home':      'home'
+          '':				'index',
+          'photo/:id':		'photo'
         },
 
         index: function() {
-            var app_view = new AppView();
+            var app_view = new IndexView();
             app_view.render();
         },
 
-        home: function() {
-            var home_view = new HomeView();
-            home_view.render();
+        photo: function(id) {
+            var photo_view = new PhotoView({id: id});
+            photo_view.render();
         }
     });
 
