@@ -2,8 +2,9 @@ define([
 	'jquery',
 	'backbone',
 	'views/IndexView',
-	'views/PhotoView'
-], function($, Backbone, IndexView, PhotoView) {
+	'views/PhotoView',
+	'collections/Photos'
+], function($, Backbone, IndexView, PhotoView, Photos) {
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
@@ -18,7 +19,8 @@ define([
 
 		photo: function(id) {
 			
-			var photo_data = {
+			var sample = [{
+				"id": 1,
 				"width": "1632",
 				"flickr_id": "2854215656",
 				"tags": ["london", "advertising", "billboard", "bethnalgreen", "tfl"],
@@ -29,9 +31,13 @@ define([
 				"original_url": "http://farm4.staticflickr.com/3027/2854215656_24c9e13467_o.jpg",
 				"date_taken": "2008-09-13 18:45:22",
 				"height": "1224"
-			};
-			
-			var photo_view = new PhotoView(photo_data);
+			}];
+
+			photos = new Photos(sample);
+
+			var photo_view = new PhotoView({
+				'model': photos.get(id)
+			});
 			photo_view.render();
 		}
 	});
