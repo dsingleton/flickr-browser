@@ -29,7 +29,9 @@ define([
 					id: key + 1,
 					file: photo.file,
 					title: photo.title,
-					description: photo.description
+					description: photo.description,
+					tags: photo.tags,
+					date_taken: photo.date_taken
 				};
 			});
 
