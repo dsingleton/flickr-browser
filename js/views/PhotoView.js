@@ -6,7 +6,7 @@ define([
 
 	var PhotoView = Backbone.View.extend({
 
-		template: "Hello {{ id }}",
+		template: '<h2>{{title}}</h2> <img src="{{file}}" /> {{# description}}<p>{{description}}</p>{{/description}}',
 
 		initialize: function(photo) {
 			this.photo = photo;
