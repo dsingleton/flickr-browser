@@ -3,8 +3,9 @@ define([
 	'backbone',
 	'views/IndexView',
 	'views/PhotoView',
-	'collections/Photos'
-], function($, Backbone, IndexView, PhotoView, Photos) {
+	'collections/Photos',
+	'flickr_photo_data'
+], function($, Backbone, IndexView, PhotoView, Photos, flickr_photo_data) {
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
@@ -19,21 +20,20 @@ define([
 
 		photo: function(id) {
 			
-			var sample = [{
-				"id": 1,
-				"width": "1632",
-				"flickr_id": "2854215656",
-				"tags": ["london", "advertising", "billboard", "bethnalgreen", "tfl"],
-				"description": "Taken wandering around Bethnal Green",
-				"file": "/Users/david/Pictures/flickr/2854215656.jpg",
-				"title": "Pumps & Pumps",
-				"views": "62",
-				"original_url": "http://farm4.staticflickr.com/3027/2854215656_24c9e13467_o.jpg",
-				"date_taken": "2008-09-13 18:45:22",
-				"height": "1224"
-			}];
+			// Transform our sample data into a simpler subset with a predictable and
+			// continious, id-range for testing.
 
-			photos = new Photos(sample);
+			// @TODO: Move into it's own transformer/data access module
+			flickr_photo_data = _.map(flickr_photo_data, function(photo, key) {
+				return {
+					id: key + 1,
+					file: photo.file,
+					title: photo.title,
+					description: photo.description
+				};
+			});
+
+			photos = new Photos(flickr_photo_data);
 
 			var photo_view = new PhotoView({
 				'model': photos.get(id)

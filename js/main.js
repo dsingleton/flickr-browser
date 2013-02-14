@@ -7,13 +7,17 @@ requirejs.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'flickr_photo_data': {
+            exports: 'flickr_photo_data'
         }
     },
     paths: {
         jquery: 'components/jquery/jquery.min',
         underscore: 'components/underscore/underscore-min',
         backbone: 'components/backbone/backbone',
-        mustache: 'components/mustache/mustache'
+        mustache: 'components/mustache/mustache',
+        flickr_photo_data: '../data/sample'
     }
 });
 
