@@ -17,7 +17,7 @@ requirejs.config({
         underscore: 'components/underscore/underscore-min',
         backbone: 'components/backbone/backbone',
         mustache: 'components/mustache/mustache',
-        flickr_photo_data: '../data/sample'
+        flickr_photo_data: '../data/photos'
     }
 });
 

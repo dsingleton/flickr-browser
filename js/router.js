@@ -1,12 +1,12 @@
 define([
 	'jquery',
 	'backbone',
+	'app_data',
 	'views/IndexView',
 	'views/PhotoView',
-	'collections/Photos',
-	'flickr_photo_data'
-], function($, Backbone, IndexView, PhotoView, Photos, flickr_photo_data) {
-
+	'collections/Photos'
+], function($, Backbone, AppData, IndexView, PhotoView, Photos) {
+	
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'':							'index',
@@ -20,22 +20,7 @@ define([
 
 		photo: function(id) {
 			
-			// Transform our sample data into a simpler subset with a predictable and
-			// continious, id-range for testing.
-
-			// @TODO: Move into it's own transformer/data access module
-			flickr_photo_data = _.map(flickr_photo_data, function(photo, key) {
-				return {
-					id: key + 1,
-					file: photo.file,
-					title: photo.title,
-					description: photo.description,
-					tags: photo.tags,
-					date_taken: photo.date_taken
-				};
-			});
-
-			photos = new Photos(flickr_photo_data);
+			var photos = new Photos(AppData.getPhotos());
 
 			var photo_view = new PhotoView({
 				'model': photos.get(id)
