@@ -2,34 +2,24 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'mustache'
-], function($, _, Backbone, Mustache) {
+	'mustache',
+	'views/photopreviewview'
+], function($, _, Bacbone, Mustache, PhotoPreviewView) {
 
 	var IndexView = Backbone.View.extend({
 
 		template: $('#template-IndexView').text(),
-		el: $('#content'),
+		tagName: 'ul',
 
 		initialize: function() {
-			this.render();
 		},
 
 		render: function() {
-			this.$el.html(Mustache.render(this.template, this.templateData()));
-		},
-
-		templateData: function() {
-			// Messy. Each preview photo should be it's own sub view, but this works for v1
-			var photos = _.map(this.collection.models, function(photo) {
-				return _.extend(photo.attributes, {
-						url: photo.url()
-					}
-				);
-			});
-
-			return {
-				photos: photos
-			};
+			_.each(this.collection.models, function(photo) {
+        $(this.$el).append(new PhotoPreviewView({model: photo}).render().el);
+      }, this);
+      $('#content').html(this.$el);
+      return this;
 		}
 
 	});
