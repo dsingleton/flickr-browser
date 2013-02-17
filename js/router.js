@@ -16,7 +16,10 @@ define([
 		},
 
 		index: function() {
-			var app_view = new IndexView();
+			var recent_photos = new Photos(photos.first(20));
+			var app_view = new IndexView({
+				collection: recent_photos
+			});
 			app_view.render();
 		},
 
