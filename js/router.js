@@ -7,6 +7,8 @@ define([
 	'collections/Photos'
 ], function($, Backbone, AppData, IndexView, PhotoView, Photos) {
 	
+	var photos = new Photos(AppData.getPhotos());
+
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'':							'index',
@@ -19,9 +21,6 @@ define([
 		},
 
 		photo: function(id) {
-			
-			var photos = new Photos(AppData.getPhotos());
-
 			var photo_view = new PhotoView({
 				'model': photos.get(id)
 			});
