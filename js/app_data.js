@@ -13,7 +13,9 @@ define([
 				title: photo.title,
 				description: photo.description,
 				tags: photo.tags,
-				date_taken: photo.date_taken
+				date_taken: photo.date_taken,
+				height: photo.height,
+				width: photo.width
 			};
 		});
 

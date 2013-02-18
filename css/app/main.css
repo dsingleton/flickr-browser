@@ -1,5 +1,40 @@
+/* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .photo-preview {
     display: inline-block;
-    margin: 10px;
+    width: 300px;
+    margin: 15px;
+    padding: 5px;
+
     list-style: none;
+    vertical-align: top;
+
+    border: 1px solid rgba(0,0,0,0.25);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.photo-preview a {
+    color: #333;
+}
+
+.photo-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-preview .title {
+    margin: 0;
+    padding: 7px 5px 1px 5px;
+    color: #333;
+
+    white-space: nowrap;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
