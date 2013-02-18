@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+body {
+    color: #222;
+    background: #fff;
+
+    font-family: "Open Sans", "Helvetica Neue", Helvetica,Arial,sans-serif
+}
+
 .photo-preview {
     display: inline-block;
     width: 300px;
