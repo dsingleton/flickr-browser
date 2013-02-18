@@ -4,8 +4,9 @@ define([
 	'app_data',
 	'views/IndexView',
 	'views/PhotoView',
-	'collections/Photos'
-], function($, Backbone, AppData, IndexView, PhotoView, Photos) {
+	'collections/Photos',
+	'views/SearchFormView'
+], function($, Backbone, AppData, IndexView, PhotoView, Photos, SearchFormView) {
 	
 	var allPhotos = new Photos(AppData.getPhotos());
 
@@ -45,11 +46,11 @@ define([
 						return _.contains(photo.get('tags'), options['tag']);
 					}
 					else if ('search' in options) {
-						return photo.get('title').indexOf(options['search']) != -1;
+						return photo.get('title').toLowerCase().indexOf(options['search'].toLowerCase()) != -1;
 					}
 				}));
 			}
-			
+
 			photos = new Photos(photos.first(20));
 			
 			view = new IndexView({
@@ -69,6 +70,9 @@ define([
 	var initialize = function() {
 		var app_router = new AppRouter();
 		Backbone.history.start({pushState: false});
+
+		// @TODO This should live on an initial app view, rather than the router
+		new SearchFormView();
 	};
 
 	return {
