@@ -5,7 +5,7 @@ define([
 	var PhotoModel = Backbone.Model.extend({
 
 		initialize: function() {
-			_.bindAll(this);
+			_.bindAll(this, 'url');
 		},
 
 		url: function() {
