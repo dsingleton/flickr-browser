@@ -7,25 +7,48 @@ define([
 	'collections/Photos'
 ], function($, Backbone, AppData, IndexView, PhotoView, Photos) {
 	
-	var photos = new Photos(AppData.getPhotos());
+	var allPhotos = new Photos(AppData.getPhotos());
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'':							'index',
+			'tag/:tag':			'tag',
 			'photo/:id':		'photo'
 		},
 
-		index: function() {
-			var recent_photos = new Photos(photos.first(20));
-			var app_view = new IndexView({
-				collection: recent_photos
+		index: function(optional_tag) {
+			this.photosList();
+		},
+
+		tag: function(tag) {
+			this.photosList({
+				tag: tag
 			});
-			app_view.render();
+		},
+
+		photosList: function(options) {
+			var view,
+				photos = allPhotos;
+
+			options = options || {};
+
+			if ('tag' in options) {
+				photos = new Photos(photos.filter(function(photo) {
+					return _.contains(photo.get('tags'), options['tag']);
+				}));
+			}
+
+			photos = new Photos(photos.first(20));
+			
+			view = new IndexView({
+				collection: photos
+			});
+			view.render();
 		},
 
 		photo: function(id) {
 			var photo_view = new PhotoView({
-				'model': photos.get(id)
+				'model': allPhotos.get(id)
 			});
 			photo_view.render();
 		}
