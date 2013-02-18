@@ -11,9 +11,10 @@ define([
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
-			'':							'index',
-			'tag/:tag':			'tag',
-			'photo/:id':		'photo'
+			'':										'index',
+			'tag/:tag':						'tag',
+			'search?q=:query':		'search',
+			'photo/:id':					'photo'
 		},
 
 		index: function(optional_tag) {
@@ -26,18 +27,29 @@ define([
 			});
 		},
 
+		search: function(query) {
+			this.photosList({
+				search: query
+			});
+		},
+
 		photosList: function(options) {
 			var view,
 				photos = allPhotos;
 
 			options = options || {};
 
-			if ('tag' in options) {
+			if (!_.isEmpty(options)) {
 				photos = new Photos(photos.filter(function(photo) {
-					return _.contains(photo.get('tags'), options['tag']);
+					if ('tag' in options) {
+						return _.contains(photo.get('tags'), options['tag']);
+					}
+					else if ('search' in options) {
+						return photo.get('title').indexOf(options['search']) != -1;
+					}
 				}));
 			}
-
+			
 			photos = new Photos(photos.first(20));
 			
 			view = new IndexView({
