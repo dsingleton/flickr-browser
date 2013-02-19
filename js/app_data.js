@@ -8,7 +8,7 @@ define([
 		// continious, id-range for testing.
 		flickr_photo_data = _.map(flickr_photo_data, function(photo, key) {
 			return {
-				id: key + 1,
+				id: photo.flickr_id,
 				file: photo.file,
 				title: photo.title,
 				description: photo.description,

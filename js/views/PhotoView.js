@@ -23,7 +23,8 @@ define([
 			return _.extend(
 				this.model.toJSON(),
 				{
-					'next': this.model.collection.at(this.model.id).url()
+					'prev': this.model.collection.prev(this.model),
+					'next': this.model.collection.next(this.model),
 				}
 			);
 		}
