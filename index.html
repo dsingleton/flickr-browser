@@ -32,23 +32,29 @@
     
 
     <script type="text/html" id="template-PhotoView">
+
+    <h2>{{title}}</h2>
+
     <div class="row-fluid">
 
       <div class="span8">
-        <h2>{{title}}</h2>
-        <p><a href="{{next}}"><img src="{{file}}" width="500" alt="" /></a></p>
+        <p><a class="photo" href="{{file}}"><img src="{{file}}" width="500" alt="" /></a></p>
         {{# description}}<p>{{& description}}</p>{{/description}}
       </div>
 
-      <div class="span4">
+      <div class="span3 offset1">
 
-        <nav>
+        <nav class="photo-inline-nav clearfix">
           {{#prev}}
-            <a href="#photo/{{id}}">Prev</a>
+            <a rel="prev" href="#photo/{{id}}" class="prev" title="Previous: {{title}}">
+              <img src="{{file}}" height="70" width="70" />
+            </a>
           {{/prev}}
-
+          &nbsp;
           {{#next}}
-            <a href="#photo/{{id}}">Next</a>
+            <a rel="next" href="#photo/{{id}}" class="next" title="Next: {{title}}">
+              <img src="{{file}}" height="70" width="70" />
+            </a>
           {{/next}}
         </nav>
 

@@ -17,14 +17,15 @@ define([
 		},
 
 		templateData: function() {
-			var photo = this.model,
-				photos = this.model.collection;
+			var model = this.model,
+				prev = model.collection.prev(model),
+				next = model.collection.next(model);
 
 			return _.extend(
 				this.model.toTemplateData(),
 				{
-					'prev': this.model.collection.prev(this.model),
-					'next': this.model.collection.next(this.model)
+					'prev': prev ? prev.toTemplateData() : false,
+					'next': next ? next.toTemplateData() : false
 				}
 			);
 		}

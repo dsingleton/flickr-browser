@@ -5,17 +5,44 @@ body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica,Arial,sans-serif
 }
 
-.photo-preview {
+/* .framed, style. Oh for the love of SASS. */
+.photo-preview,
+.photo-inline-nav img,
+.photo {
     display: inline-block;
-    width: 300px;
-    margin: 15px;
     padding: 5px;
-
-    list-style: none;
-    vertical-align: top;
 
     border: 1px solid rgba(0,0,0,0.25);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/** Photo-Nav */
+
+.photo-inline-nav {
+    min-height: 110px;
+}
+
+.photo-inline-nav .prev {
+    float: left;
+}
+
+.photo-inline-nav .next {
+    float: right;
+}
+
+.photo-inline-nav img {
+    vertical-align: top;
+    padding: 2px;
+}
+
+/** Photo Previews */
+
+.photo-preview {
+    width: 300px;
+    margin: 15px;
+
+    list-style: none;
+    vertical-align: top;
 }
 
 .photo-preview a {
