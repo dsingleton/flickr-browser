@@ -36,21 +36,30 @@ define([
 
 		photosList: function(options) {
 			var view,
-				photos = allPhotos;
+				photos = allPhotos,
+				filter;
 
 			options = options || {};
 
-			if (!_.isEmpty(options)) {
-				photos = new Photos(photos.filter(function(photo) {
-					if ('tag' in options) {
-						return _.contains(photo.get('tags'), options['tag']);
-					}
-					else if ('search' in options) {
-						return photo.get('title').toLowerCase().indexOf(options['search'].toLowerCase()) != -1;
-					}
-				}));
+			// @TODO This logic desperately needs to move out of the router and into a model
+			// or some methods on the model
+
+			if ('tag' in options) {
+				filter = function(photo) {
+					return photo.hasTag(options.tag);
+				};
 			}
 
+			if ('search' in options) {
+				filter = function(photo) {
+					return photo.get('title').toLowerCase().indexOf(options.search.toLowerCase()) != -1 ||
+						photo.hasTag(options.search);
+				};
+			}
+
+			if (filter) {
+				photos = new Photos(allPhotos.filter(filter));
+			}
 			photos = new Photos(photos.first(20));
 			
 			view = new IndexView({

@@ -1,6 +1,7 @@
 define([
-	'backbone'
-], function(Backbone) {
+	'backbone',
+	'underscore'
+], function(Backbone, _) {
 
 	var PhotoModel = Backbone.Model.extend({
 
@@ -17,6 +18,10 @@ define([
 				url: this.url()
 			};
 			return _.extend(this.toJSON(), extra_attrs);
+		},
+
+		hasTag: function(tag) {
+			return _.contains(this.get('tags'), tag);
 		}
 		
 	});
