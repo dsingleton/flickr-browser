@@ -21,10 +21,10 @@ define([
 				photos = this.model.collection;
 
 			return _.extend(
-				this.model.toJSON(),
+				this.model.toTemplateData(),
 				{
 					'prev': this.model.collection.prev(this.model),
-					'next': this.model.collection.next(this.model),
+					'next': this.model.collection.next(this.model)
 				}
 			);
 		}

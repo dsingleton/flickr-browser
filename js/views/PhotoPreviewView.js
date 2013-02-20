@@ -16,12 +16,7 @@ define([
 		},
 
 		templateData: function() {
-			return _.extend(
-				_.pick(this.model.attributes, 'file', 'title', 'height', 'width'),
-				{
-					url: this.model.url()
-				}
-			);
+			return this.model.toTemplateData();
 		}
 
 	});
