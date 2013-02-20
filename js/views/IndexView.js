@@ -8,7 +8,6 @@ define([
 
 	var IndexView = Backbone.View.extend({
 
-		template: $('#template-IndexView').text(),
 		tagName: 'ul',
 
 		initialize: function() {
