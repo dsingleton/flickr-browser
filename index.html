@@ -74,14 +74,16 @@
       <ul>
         {{#photos}}
           <li class="photo-preview">
-            <a href="{{url}}"><img src="{{file}}" height="{{height}}" width="{{width}}" alt="" title="{{title}}" /></a>
+            <a href="#{{url}}">
+              <img src="{{file}}" height="{{height}}" width="{{width}}" alt="" title="{{title}}" />
+            </a>
           </li>
         {{/photos}}
       </ul>
     </script>
 
     <script type="text/html" id="template-PhotoPreviewView">
-        <a href="{{url}}"><img src="{{file}}" height="{{height}}" width="{{width}}" alt="" title="{{title}}" /></a>
+        <a href="#{{url}}"><img src="{{file}}" height="{{height}}" width="{{width}}" alt="" title="{{title}}" /></a>
         <p class="title"><a href="{{url}}">{{ title }}</a></p>
     </script>
 

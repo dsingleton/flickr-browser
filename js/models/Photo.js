@@ -9,7 +9,7 @@ define([
 		},
 
 		url: function() {
-			return '#photo/' + this.id;
+			return 'photo/' + this.id;
 		}
 		
 	});
