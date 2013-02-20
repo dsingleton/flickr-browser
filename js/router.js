@@ -4,18 +4,22 @@ define([
 	'app_data',
 	'views/PhotosView',
 	'views/PhotoView',
+	'views/PhotosetView',
 	'collections/Photos',
+	'collections/Photosets',
 	'views/SearchFormView'
-], function($, Backbone, AppData, PhotosView, PhotoView, Photos, SearchFormView) {
+], function($, Backbone, AppData, PhotosView, PhotoView, PhotosetView, Photos, Photosets, SearchFormView) {
 	
 	var allPhotos = new Photos(AppData.getPhotos());
+	var allPhotosets = new Photosets(AppData.getPhotosets());
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'':										'index',
 			'tag/:tag':						'tag',
 			'search?q=:query':		'search',
-			'photo/:id':					'photo'
+			'photo/:id':					'photo',
+			'set/:id':						'set'
 		},
 
 		index: function(optional_tag) {
@@ -73,6 +77,13 @@ define([
 				'model': allPhotos.get(id)
 			});
 			photoView.render();
+		},
+
+		set: function(id) {
+			var photosetView = new PhotosetView({
+				model: allPhotosets.get(id)
+			});
+			photosetView.render();
 		}
 	});
 

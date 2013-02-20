@@ -1,7 +1,8 @@
 define([
 	'underscore',
-	'flickr_photo_data'
-], function(_, flickrPhotosData) {
+	'flickr_photo_data',
+	'flickr_set_data'
+], function(_, flickrPhotosData, flickrSetsData) {
 
 	var getPhotos = function() {
 		// Transform our sample data into a simpler subset with a predictable and
@@ -22,8 +23,21 @@ define([
 		return flickrPhotosData;
 	};
 
+	var getPhotosets = function() {
+		flickrSetsData = _.map(flickrSetsData, function(photoset, key) {
+			return {
+				id: key + 1,
+				title: photoset.title,
+				description: photoset.description
+			};
+		});
+
+		return flickrSetsData;
+	};
+
 	return {
-		getPhotos: getPhotos
+		getPhotos: getPhotos,
+		getPhotosets: getPhotosets
 	};
 
 });
