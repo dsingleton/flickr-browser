@@ -2,11 +2,11 @@ define([
 	'jquery',
 	'backbone',
 	'app_data',
-	'views/IndexView',
+	'views/PhotosView',
 	'views/PhotoView',
 	'collections/Photos',
 	'views/SearchFormView'
-], function($, Backbone, AppData, IndexView, PhotoView, Photos, SearchFormView) {
+], function($, Backbone, AppData, PhotosView, PhotoView, Photos, SearchFormView) {
 	
 	var allPhotos = new Photos(AppData.getPhotos());
 
@@ -62,26 +62,26 @@ define([
 			}
 			photos = new Photos(photos.first(20));
 			
-			view = new IndexView({
+			photosView = new PhotosView({
 				collection: photos
 			});
-			view.render();
+			photosView.render();
 		},
 
 		photo: function(id) {
-			var photo_view = new PhotoView({
+			var photoView = new PhotoView({
 				'model': allPhotos.get(id)
 			});
-			photo_view.render();
+			photoView.render();
 		}
 	});
 
 	var initialize = function() {
-		var app_router = new AppRouter();
-		Backbone.history.start({pushState: false});
-
 		// @TODO This should live on an initial app view, rather than the router
 		new SearchFormView();
+
+		new AppRouter();
+		Backbone.history.start({pushState: false});
 	};
 
 	return {

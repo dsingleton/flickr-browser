@@ -3,7 +3,7 @@ define([
 	'underscore'
 ], function(Backbone, _) {
 
-	var PhotoModel = Backbone.Model.extend({
+	var Photo = Backbone.Model.extend({
 
 		initialize: function() {
 			_.bindAll(this, 'url', 'toTemplateData');
@@ -26,5 +26,5 @@ define([
 		
 	});
 
-	return PhotoModel;
+	return Photo;
 });

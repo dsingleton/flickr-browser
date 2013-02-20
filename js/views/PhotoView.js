@@ -14,6 +14,7 @@ define([
 
 		render: function() {
 			this.$el.html(Mustache.render(this.template, this.templateData()));
+			return this;
 		},
 
 		templateData: function() {

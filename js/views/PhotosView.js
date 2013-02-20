@@ -6,7 +6,7 @@ define([
 	'views/photopreviewview'
 ], function($, _, Bacbone, Mustache, PhotoPreviewView) {
 
-	var IndexView = Backbone.View.extend({
+	var PhotosView = Backbone.View.extend({
 
 		tagName: 'ul',
 
@@ -15,7 +15,9 @@ define([
 
 		render: function() {
 			_.each(this.collection.models, function(photo) {
-        $(this.$el).append(new PhotoPreviewView({model: photo}).render().el);
+        this.$el.append(
+					new PhotoPreviewView({model: photo}).render().el
+        );
       }, this);
       $('#content').html(this.$el);
       return this;
@@ -23,5 +25,5 @@ define([
 
 	});
 
-	return IndexView;
+	return PhotosView;
 });

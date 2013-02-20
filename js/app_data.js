@@ -1,12 +1,12 @@
 define([
 	'underscore',
 	'flickr_photo_data'
-], function(_, flickr_photo_data) {
+], function(_, flickrPhotosData) {
 
 	var getPhotos = function() {
 		// Transform our sample data into a simpler subset with a predictable and
 		// continious, id-range for testing.
-		flickr_photo_data = _.map(flickr_photo_data, function(photo, key) {
+		flickrPhotosData = _.map(flickr_photo_data, function(photo, key) {
 			return {
 				id: photo.flickr_id,
 				file: photo.file,
@@ -19,7 +19,7 @@ define([
 			};
 		});
 
-		return flickr_photo_data;
+		return flickrPhotosData;
 	};
 
 	return {
