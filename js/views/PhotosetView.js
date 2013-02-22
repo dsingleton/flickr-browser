@@ -4,7 +4,7 @@ define([
 	'models/Photoset'
 ], function(Backbone, Mustache, Photoset) {
 
-	var PhotosetsView = Backbone.View.extend({
+	var PhotosetView = Backbone.View.extend({
 		model: Photoset,
 		template: '<h1>{{ title}}</h1>{{#description}}<p>{{description}}</p>{{/description}}',
 		el: $('#content'),
@@ -20,5 +20,5 @@ define([
 
 	});
 
-	return PhotosetsView;
+	return PhotosetView;
 });

@@ -1,14 +1,14 @@
 define([
-	'jquery',
 	'backbone',
 	'app_data',
 	'views/PhotosView',
 	'views/PhotoView',
+	'views/PhotosetsView',
 	'views/PhotosetView',
 	'collections/Photos',
 	'collections/Photosets',
 	'views/SearchFormView'
-], function($, Backbone, AppData, PhotosView, PhotoView, PhotosetView, Photos, Photosets, SearchFormView) {
+], function(Backbone, AppData, PhotosView, PhotoView, PhotosetsView, PhotosetView, Photos, Photosets, SearchFormView) {
 	
 	var allPhotos = new Photos(AppData.getPhotos());
 	var allPhotosets = new Photosets(AppData.getPhotosets());
@@ -19,6 +19,7 @@ define([
 			'tag/:tag':						'tag',
 			'search?q=:query':		'search',
 			'photo/:id':					'photo',
+			'sets':								'sets',
 			'set/:id':						'set'
 		},
 
@@ -77,6 +78,13 @@ define([
 				'model': allPhotos.get(id)
 			});
 			photoView.render();
+		},
+
+		sets: function() {
+			var view = new PhotosetsView({
+				collection: allPhotosets
+			});
+			view.render();
 		},
 
 		set: function(id) {
