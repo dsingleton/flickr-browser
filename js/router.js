@@ -88,10 +88,15 @@ define([
 		},
 
 		set: function(id) {
-			var photosetView = new PhotosetView({
-				model: allPhotosets.get(id)
+			var set = allPhotosets.get(id),
+				filter = function(photo) {
+					return _.contains(set.get('photos'), photo.id);
+				};
+			
+			photosView = new PhotosView({
+				collection: new Photos(allPhotos.filter(filter))
 			});
-			photosetView.render();
+			photosView.render();
 		}
 	});
 

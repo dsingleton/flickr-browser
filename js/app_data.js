@@ -28,7 +28,8 @@ define([
 			return {
 				id: key + 1,
 				title: photoset.title,
-				description: photoset.description
+				description: photoset.description,
+				photos: photoset.photos
 			};
 		});
 
