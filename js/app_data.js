@@ -1,13 +1,20 @@
 define([
 	'underscore',
 	'flickr_photo_data',
-	'flickr_set_data'
-], function(_, flickrPhotosData, flickrSetsData) {
+	'flickr_set_data',
+	'collections/Photos',
+	'collections/Photosets'
+], function(_, flickrPhotosData, flickrSetsData, Photos, Photosets) {
+
+	var id_to_index = {};
 
 	var getPhotos = function() {
 		// Transform our sample data into a simpler subset with a predictable and
 		// continious, id-range for testing.
 		flickrPhotosData = _.map(flickr_photo_data, function(photo, key) {
+
+			id_to_index[photo.flickr_id] = key;
+
 			return {
 				id: photo.flickr_id,
 				file: photo.file,
@@ -20,7 +27,7 @@ define([
 			};
 		});
 
-		return flickrPhotosData;
+		return new Photos(flickrPhotosData);
 	};
 
 	var getPhotosets = function() {
@@ -29,11 +36,13 @@ define([
 				id: key + 1,
 				title: photoset.title,
 				description: photoset.description,
-				photos: photoset.photos
+				photos: new Photos(_.map(photoset.photos, function(photo_id) {
+					return flickrPhotosData[id_to_index[photo_id]];
+				}))
 			};
 		});
 
-		return flickrSetsData;
+		return new Photosets(flickrSetsData);
 	};
 
 	return {

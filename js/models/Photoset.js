@@ -1,6 +1,8 @@
 define([
-	'backbone'
-], function(Backbone) {
+	'backbone',
+	'collections/Photos'
+
+], function(Backbone, Photos) {
 
 	var Photoset = Backbone.Model.extend({
 		defaults: {
@@ -18,7 +20,8 @@ define([
 
 		toTemplateData: function() {
 			var extra_attrs = {
-				url: this.url()
+				url: this.url(),
+				size: this.get('photos').length
 			};
 			return _.extend(this.toJSON(), extra_attrs);
 		}

@@ -10,8 +10,8 @@ define([
 	'views/SearchFormView'
 ], function(Backbone, AppData, PhotosView, PhotoView, PhotosetsView, PhotosetView, Photos, Photosets, SearchFormView) {
 	
-	var allPhotos = new Photos(AppData.getPhotos());
-	var allPhotosets = new Photosets(AppData.getPhotosets());
+	var allPhotos = AppData.getPhotos();
+	var allPhotosets = AppData.getPhotosets();
 
 	var AppRouter = Backbone.Router.extend({
 		routes: {
@@ -88,15 +88,10 @@ define([
 		},
 
 		set: function(id) {
-			var set = allPhotosets.get(id),
-				filter = function(photo) {
-					return _.contains(set.get('photos'), photo.id);
-				};
-			
-			photosView = new PhotosView({
-				collection: new Photos(allPhotos.filter(filter))
+			var view = new PhotosView({
+				collection: allPhotosets.get(id).get('photos')
 			});
-			photosView.render();
+			view.render();
 		}
 	});
 
