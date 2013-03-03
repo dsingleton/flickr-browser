@@ -19,3 +19,11 @@ Example data and clear documentation will be added once the format has settled d
 ### Where are you getting the data?
 
 Using my [Flickr export script](https://github.com/dsingleton/flickr-backup), which is likely to change in step with this project.
+
+## Flickr ABCs
+
+This is one of a planned set of three tools around exported flickr data.
+
+* A) [Flickr Archive](https://github.com/dsingleton/flickr-archive) - Extracts photos and metadata from Flickr in to an archive, for use by other tools
+* B) [Flickr Browser](https://github.com/dsingleton/flickr-browser) - A web-app to browse the photos and metadata of a Flickr Archive
+* C) Flickr Something-begining-with-C - A tool to view a Flickr Archive in a regular file system, where the photos themselves contain the metadata
